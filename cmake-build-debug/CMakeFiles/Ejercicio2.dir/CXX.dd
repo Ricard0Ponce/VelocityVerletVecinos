@@ -1,0 +1,7 @@
+ninja_dyndep_version = 1.0
+build CMakeFiles/Ejercicio2.dir/main.cpp.o: dyndep
+
+build CMakeFiles/Ejercicio2.dir/Sim.cpp.o: dyndep
+
+build CMakeFiles/Ejercicio2.dir/Atomo.cpp.o: dyndep
+
