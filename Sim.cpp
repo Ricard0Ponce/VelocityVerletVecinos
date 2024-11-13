@@ -171,7 +171,7 @@ void Sim ::Simulacion() {
     // Ciclo de configuraciones
     for (int ic = 0; ic < nc; ic++) {
 
-        if(ic % ncvc) {
+        if(ic % ncvc==0) {
             calcularVC();
         }
 
@@ -362,6 +362,12 @@ void Sim:: Prop() {
 void Sim::calcularVC() {
     cout << endl;
     cout << "Sim::calcularVC" << endl;
+
+    for (int ia =0; ia < na; ia++) {
+        atomos[ia] -> vc.clear();
+        atomos[ia] -> nv = 0;
+    }
+
     for (int ia = 0; ia < na - 1; ia++) {
         for (int ja = ia+1; ja < na-1; ja++) {
             double r = Dist(ia,ja); // Se calculo la distancia
@@ -398,9 +404,9 @@ void Sim::AceleracionesVC() {
                 u = u + LJ(r);
                 for(int id = 0; id < nd; id++) {
                     atomos[ia] -> a[id] =
-                        atomos[ia] -> a[id] + f * dis[id] / r ; // Cuidado aquí con la f
-                    atomos[ja] -> a[id] =
-                        atomos[ja] -> a[id]- f * dis[id] / r ;
+                        atomos[ia] -> a[id] + f * dis[id] *0.5 ; // Cuidado aquí con la f
+                    //atomos[ja] -> a[id] =
+                        //atomos[ja] -> a[id]- f * dis[id] / r ;
                 }
             }
 
